@@ -5,7 +5,7 @@ import {GET_CONTENTS} from "./actions";
 function* fetchContent() {
     try {
         const content = yield call(
-            () => axios.get("https://ant.design/")
+            () => axios.get("http://codesanctum.net:4000/")
         );
         yield put({type: GET_CONTENTS, payload: content.data});
     } catch (e) {

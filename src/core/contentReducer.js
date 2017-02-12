@@ -3,7 +3,7 @@ import {getContents} from "./actions";
 
 export const contentReducer = handleActions({
     [getContents]: (state, {payload}) => {
-        return payload;
+        return {content: payload};
     }
 }, {content: null});
 
