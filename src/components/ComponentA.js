@@ -14,7 +14,7 @@ class ComponentA extends Component {
 }
 
 function mapStateToProps({content}) {
-    return {content: content}
+    return {content: content.content}
 }
 
 function mapDispatchToProps(dispatch) {
