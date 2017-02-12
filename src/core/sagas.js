@@ -1,15 +1,15 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
-import GET_CONTENTS from "./actions";
+import {FETCH_REQUESTED,getContents} from "./actions";
 
 function* fetchContent() {
     try {
         const content = yield call(
             () => axios.get("http://codesanctum.net:4000/")
         );
-        // yield put({type: GET_CONTENTS, user: content.data});
+        yield put(getContents(content.data));
     } catch (e) {
-        yield put({type: "USER_FETCH_FAILED", message: e.message});
+        yield put(getContents(e.toString()));
     }
 }
 
@@ -18,7 +18,7 @@ function* fetchContent() {
  Allows concurrent fetches of user.
  */
 function* mySaga() {
-    yield takeEvery("FETCH_REQUESTED", fetchContent);
+    yield takeEvery(FETCH_REQUESTED, fetchContent);
 }
 
 /*
