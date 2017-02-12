@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import {requestContent} from "../core/actions";
 
 class ComponentA extends Component {
     componentDidMount() {
@@ -15,18 +13,19 @@ class ComponentA extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {contents: state.content}
+function mapStateToProps({content}) {
+    return {content: content}
 }
 
 function mapDispatchToProps(dispatch) {
-    return {requestContent: bindActionCreators(()=>{
-        return {type: 'FETCH_REQUESTED'};
-    }, dispatch)}
+    return {
+        requestContent: () => {
+            return dispatch({type: 'FETCH_REQUESTED'});
+        }
+    }
 }
 
-export default connect
-(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(ComponentA);

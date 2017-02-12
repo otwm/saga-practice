@@ -6,7 +6,6 @@ import contentSaga from './sagas';
 const sagaMiddleware = createSagaMiddleware()
 
 export default function configureStore(initialState) {
-    debugger
     const store = createStore(
         reducer,
         applyMiddleware(sagaMiddleware)
