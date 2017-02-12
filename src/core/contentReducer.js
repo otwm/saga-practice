@@ -1,10 +1,10 @@
-import {handleActions} from "redux-actions";
-import {getContents} from "./actions";
+import {handleActions} from 'redux-actions'
+import {getContents} from './actions'
 
 export const contentReducer = handleActions({
     [getContents]: (state, {payload}) => {
-        return payload;
+        return {content: payload}
     }
-}, {content: null});
+}, {content: null})
 
-export default contentReducer;
+export default contentReducer

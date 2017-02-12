@@ -1,32 +1,31 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import {requestContent} from "../core/actions";
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {requestContent} from '../core/actions'
 
 class ComponentA extends Component {
     componentDidMount() {
-        this.props.requestContent();
+        this.props.requestContent()
     }
 
     render() {
         return (
-            <div>{this.props.content}</div>
-        );
+            <div>{this.props.contents}</div>
+        )
     }
 }
 
 function mapStateToProps(state) {
+    console.log(state)
     return {contents: state.content}
 }
 
 function mapDispatchToProps(dispatch) {
-    return {requestContent: bindActionCreators(()=>{
-        return {type: 'FETCH_REQUESTED'};
-    }, dispatch)}
+    return {requestContent: bindActionCreators(requestContent, dispatch)}
 }
 
 export default connect
 (
     mapStateToProps,
     mapDispatchToProps
-)(ComponentA);
+)(ComponentA)
